@@ -1,6 +1,7 @@
 package com.ashiquehira.recyclerviewbestpractice;
 
 public class MyModel {
+    String myuid;
     String myTitle;
     String myDisc;
     int myImg;
@@ -27,6 +28,14 @@ public class MyModel {
 
     public void setMyImg(int myImg) {
         this.myImg = myImg;
+    }
+
+    public String getMyuid() {
+        return myuid;
+    }
+
+    public void setMyuid(String myuid) {
+        this.myuid = myuid;
     }
 }
 

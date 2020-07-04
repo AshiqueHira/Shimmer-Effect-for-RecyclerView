@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements CardClickListner{
         m.setMyTitle("Watermelon");
         m.setMyDisc("This is a Watermelon");
         m.setMyImg(R.drawable.watermelon);
+        m.setMyuid("this is my uid");
         models.add(m);
 
         m = new MyModel();
@@ -87,7 +88,9 @@ public class MainActivity extends AppCompatActivity implements CardClickListner{
 
     @Override
     public void onCardClick(int position) {
+        String gUid = models.get(position).getMyuid();
         Intent intent = new Intent(this,SecondActivity.class);
+        intent.putExtra("uid",gUid);
         startActivity(intent);
     }
     // write some code here
