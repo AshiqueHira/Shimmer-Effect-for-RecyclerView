@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 
@@ -16,20 +19,48 @@ public class MainActivity extends AppCompatActivity implements CardClickListner{
     private ArrayList<MyModel> models = new ArrayList<>();
     private RecyclerAdapter myRecyclerAdapter;
 
+    private ShimmerFrameLayout shimmerViewContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+        shimmerViewContainer = findViewById(R.id.myShimmo);
+        shimmerViewContainer.setVisibility(View.VISIBLE);
+        shimmerViewContainer.startShimmerAnimation();
+
         myRecyclerView = findViewById(R.id.myRecyclerView);
+        myRecyclerView.setVisibility(View.INVISIBLE);
         myRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         myRecyclerAdapter = new RecyclerAdapter(models,this);
         myRecyclerView.setAdapter(myRecyclerAdapter);
+
         insertDatas();
+        if (insertDatas() && shimmerViewContainer.isAnimationStarted()){
+
+            shimmerViewContainer.setVisibility(View.GONE);
+            shimmerViewContainer.startShimmerAnimation();
+            myRecyclerView.setVisibility(View.VISIBLE);
+        }
+
     }
 
-    public void insertDatas(){
+    @Override
+    public void onResume() {
+        super.onResume();
+        shimmerViewContainer.startShimmerAnimation();
+    }
+
+    @Override
+    public void onPause() {
+        shimmerViewContainer.stopShimmerAnimation();
+        super.onPause();
+    }
+    public boolean insertDatas(){
 
 
         MyModel m = new MyModel();
@@ -83,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements CardClickListner{
         m.setMyImg(R.drawable.grape);
         models.add(m);
 
-
+        return true;
     }
 
     @Override

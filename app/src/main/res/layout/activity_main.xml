@@ -6,6 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/myShimmo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/shimmer__layout"/>
+            <include layout="@layout/shimmer__layout"/>
+            <include layout="@layout/shimmer__layout"/>
+            <include layout="@layout/shimmer__layout"/>
+            <include layout="@layout/shimmer__layout"/>
+            <include layout="@layout/shimmer__layout"/>
+            <include layout="@layout/shimmer__layout"/>
+            <include layout="@layout/shimmer__layout"/>
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myRecyclerView"
         android:layout_width="0dp"
